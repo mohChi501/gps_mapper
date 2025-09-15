@@ -1,5 +1,9 @@
 # gps_mapper
 record, label, and edit gps points
+
+A lightweight, mobile-first HTML/JS app for mapping bus stops from a smartphone. Record GPS points with optional name, description, and a photo captured from the device camera or uploaded from storage. Visualize points on a Leaflet map, merge GTFS schedule data, validate and delete points on the map, and export two text files (one with image filenames).
+
+---
 ## Features
 1. Record GPS locations with optional stop name, description, and photo (camera capture or upload).  
 2. Photo capture uses the rear camera hint (`capture="environment"`) and is processed entirely in the browser.  
