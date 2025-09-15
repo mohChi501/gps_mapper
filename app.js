@@ -29,7 +29,7 @@ function sanitizeCoord(coord) {
   return coord.toFixed(6).replace('.', '_');
 }
 
-// Record a stop with optional photo
+// Record a stop with optional photo and auto-download image
 async function recordStop() {
   try {
     const pos = await new Promise((res, rej) =>
@@ -40,20 +40,25 @@ async function recordStop() {
     const stop_name = document.getElementById('stopName').value.trim();
     const stop_desc = document.getElementById('stopDesc').value.trim();
 
-    // Photo inputs: rear, front, upload
-    const rearIn = document.getElementById('captureImageRear');
-    const frontIn = document.getElementById('captureImageFront');
+    // Single capture input and upload input
+    const capIn = document.getElementById('captureImage');
     const upIn = document.getElementById('uploadImage');
-    const file = rearIn.files[0] || frontIn.files[0] || upIn.files[0] || null;
+    const file = capIn.files[0] || upIn.files[0] || null;
 
     let photoDataUrl = null;
     let photoFileName = '';
 
     if (file) {
+      // Build safe filename: img{lat}_{lon}.{ext}
       const latStr = sanitizeCoord(stop_lat);
       const lonStr = sanitizeCoord(stop_lon);
       const ext = file.name.split('.').pop().toLowerCase();
       photoFileName = `img${latStr}_${lonStr}.${ext}`;
+
+      // Trigger a client‐side download of the raw image file
+      saveAs(file, photoFileName);
+
+      // Read file locally as Data URL for popup preview
       photoDataUrl = await new Promise(r => {
         const rd = new FileReader();
         rd.onload = () => r(rd.result);
@@ -77,8 +82,7 @@ async function recordStop() {
     // Clear inputs
     document.getElementById('stopName').value = '';
     document.getElementById('stopDesc').value = '';
-    rearIn.value = '';
-    frontIn.value = '';
+    capIn.value = '';
     upIn.value = '';
   } catch {
     alert('GPS error or permission denied');
