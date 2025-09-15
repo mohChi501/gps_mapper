@@ -1,0 +1,131 @@
+:root {
+  --jade: #00A36C;
+  --black: #000000;
+  --white: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: var(--white);
+  color: var(--black);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--jade);
+  color: var(--white);
+  padding: 0.5em 1em;
+}
+
+button,
+input[type="file"],
+input[type="text"] {
+  font-size: 1em;
+  border-radius: 4px;
+  outline: none;
+}
+
+button {
+  background-color: var(--black);
+  color: var(--white);
+  border: 2px solid var(--jade);
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--jade);
+  color: var(--white);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.4em;
+  border: 1px solid var(--black);
+  margin-bottom: 0.5em;
+  color: var(--black);
+  background-color: var(--white);
+}
+
+#imageInputs {
+  margin: 0.5em 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#imageInputs label {
+  margin-top: 0.5em;
+  color: var(--black);
+}
+
+input[type="file"] {
+  margin-top: 0.25em;
+  color: var(--black);
+}
+
+main {
+  padding: 1em;
+}
+
+#mapSection {
+  margin-top: 1em;
+  height: 300px;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--jade);
+}
+
+.low-data #mapSection {
+  display: none;
+}
+
+/* Leaflet overrides */
+
+.leaflet-container {
+  background: var(--white);
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--white);
+  color: var(--black);
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+.leaflet-popup-tip {
+  background: var(--white);
+}
+
+.leaflet-control-attribution,
+.leaflet-control-scale {
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--jade);
+}
+
+/* Popup buttons */
+
+.leaflet-popup-content-wrapper button {
+  display: inline-block;
+  margin: 0.3em 0.2em 0 0.2em;
+  padding: 0.3em 0.6em;
+  background-color: var(--jade);
+  color: var(--white);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.leaflet-popup-content-wrapper button:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
