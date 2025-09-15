@@ -4,14 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bus-Stop Mapper</title>
-
-  <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet/dist/leaflet.css"
-  />
-
-  <!-- App Styles -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -43,20 +36,12 @@
       />
 
       <div id="imageInputs">
-        <label for="captureImageRear">Take Photo (Rear Camera):</label>
+        <label for="captureImage">Take Photo:</label>
         <input
           type="file"
-          id="captureImageRear"
+          id="captureImage"
           accept="image/*"
           capture="environment"
-        />
-
-        <label for="captureImageFront">Take Photo (Front Camera):</label>
-        <input
-          type="file"
-          id="captureImageFront"
-          accept="image/*"
-          capture="user"
         />
 
         <label for="uploadImage">Upload Image:</label>
@@ -83,17 +68,10 @@
     </section>
   </main>
 
-  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-  <!-- FileSaver.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
-  <!-- JSZip & PapaParse for GTFS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-
-  <!-- App Logic -->
   <script src="app.js"></script>
 </body>
 </html>
