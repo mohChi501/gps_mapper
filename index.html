@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bus-Stop Mapper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Leaflet CSS from Cloudflare CDN -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"
+  />
+
+  <!-- App styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Bus-Stop Mapper</h1>
+    <p>Capture, import, inspect, edit, and export bus stop data. All processing is local and secure.</p>
+  </header>
+
+  <div id="app-container">
+    <!-- Controls -->
+    <div id="controls">
+      <!-- Record from GPS -->
+      <div class="group" title="Record from GPS">
+        <input id="stopName" type="text" placeholder="Stop name (optional)" />
+        <input id="stopDesc" type="text" placeholder="Description (optional)" />
+
+        <label for="captureImage" class="file-label">📷 Take Photo</label>
+        <input id="captureImage" type="file" accept="image/*" capture="environment" hidden />
+
+        <label for="uploadImage" class="file-label">📂 Upload Image</label>
+        <input id="uploadImage" type="file" accept="image/*" hidden />
+
+        <button onclick="recordStop()">Record current location</button>
+      </div>
+
+      <!-- Import from file -->
+      <div class="group" title="Import from file">
+        <input id="fileInput" type="file" accept=".txt,.csv,.json" />
+        <button onclick="handleUpload()">Upload</button>
+      </div>
+
+      <!-- Import from API -->
+      <div class="group" title="Import from API">
+        <input id="apiUrl" type="url" placeholder="API endpoint URL (GET stops)" />
+        <button class="secondary" onclick="loadFromAPI(document.getElementById('apiUrl').value)">Load from API</button>
+      </div>
+
+      <!-- Export -->
+      <div class="group" title="Export">
+        <button onclick="exportStops('txt')">Export TXT</button>
+        <button onclick="exportStops('json')">Export JSON</button>
+      </div>
+
+      <!-- Low-data mode -->
+      <div class="group">
+        <label><input id="lowDataToggle" type="checkbox" onchange="toggleLowData()" /> Low-data mode</label>
+      </div>
+
+      <!-- Clear autosave -->
+      <div class="group" title="Clear autosaved data">
+        <button class="danger" onclick="clearAutosave()">🧹 Clear Auto‑Saved Entries</button>
+      </div>
+    </div>
+
+    <!-- Map + Table -->
+    <div id="map-table-container">
+      <div id="map"></div>
+
+      <div id="table-container">
+        <div id="table-header">Stops</div>
+        <div id="table-scroll">
+          <table id="stopsTable">
+            <thead>
+              <tr>
+                <th>Stop ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Rows injected dynamically -->
+            </tbody>
+          </table>
+        </div>
+        <div class="muted">Edits update both map and table. Export preserves original file structure.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaflet JS from Cloudflare CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+
+  <!-- Dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+  <!-- App logic -->
+  <script src="app.js"></script>
+</body>
+</html>
