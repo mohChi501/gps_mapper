@@ -1,0 +1,204 @@
+:root {
+  --jade: #00a36c;
+  --bg: #f9f9f9;
+  --text: #222;
+  --muted: #777;
+  --border: #ccc;
+  --card: #fff;
+  --shadow: rgba(0, 0, 0, 0.06);
+  --danger: #d9534f;
+  --danger-hover: #c9302c;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  padding: 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 2px var(--shadow);
+}
+header h1 {
+  margin: 0;
+  font-size: 22px;
+  color: var(--jade);
+}
+header p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+#app-container {
+  padding: 16px;
+}
+
+/* Controls */
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+#controls .group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+input,
+select,
+button,
+textarea {
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+}
+
+button {
+  background: var(--jade);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+button:hover {
+  background: #008c5c;
+}
+button.secondary {
+  background: #eee;
+  color: #333;
+  border: 1px solid var(--border);
+}
+button.secondary:hover {
+  background: #ddd;
+}
+
+/* Danger button (clear autosave) */
+button.danger {
+  background: var(--danger);
+  color: #fff;
+}
+button.danger:hover {
+  background: var(--danger-hover);
+}
+
+/* File input labels styled as buttons */
+.file-label {
+  display: inline-block;
+  padding: 8px 12px;
+  background: var(--jade);
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+.file-label:hover {
+  background: #008c5c;
+}
+
+/* Layout */
+#map-table-container {
+  display: flex;
+  gap: 16px;
+}
+
+#map {
+  flex: 2;
+  height: 520px;
+  border-radius: 8px;
+  border: 2px solid var(--jade);
+  box-shadow: 0 2px 4px var(--shadow);
+  overflow: hidden;
+}
+
+#table-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  background: var(--card);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 4px var(--shadow);
+  overflow: hidden;
+}
+
+#table-header {
+  padding: 12px;
+  font-weight: 600;
+  background: #f0f0f0;
+  border-bottom: 1px solid var(--border);
+}
+
+#table-scroll {
+  overflow-y: auto;
+  max-height: 480px;
+}
+
+#stopsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+#stopsTable th,
+#stopsTable td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+#stopsTable thead th {
+  background: #f7f7f7;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.muted {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 10px;
+}
+
+/* 📉 Low-data mode */
+body.low-data #map {
+  display: none;
+}
+body.low-data #map-table-container {
+  flex-direction: column;
+}
+body.low-data #table-container {
+  flex: 1 1 100%;
+  min-width: auto;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  #map-table-container {
+    flex-direction: column;
+	margin-top: 1em;
+	height: 300px;
+  }
+  #map {
+    flex: 2;
+	width: 100%;
+	height: 100%;
+	border-radius: 8px;
+	border: 2px solid var(--jade);
+	box-shadow: 0 2px 4px var(--shadow);
+	overflow: hidden;
+  }
+  
+  #table-scroll {
+    max-height: 320px;
+  }
+}
